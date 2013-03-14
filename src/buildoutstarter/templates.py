@@ -64,7 +64,7 @@ dist
 eggs
 parts
 .installed.cfg
-src/{{ sanitized_project_name }}.egg-info{% if is_pydev %}
+src/*.egg-info{% if is_pydev %}
 
 # PyDev Filters
 .pydevproject{%- endif %}"""

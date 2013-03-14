@@ -8,6 +8,9 @@
 # text-editor backup files
 *~
 
+# Built Project Ignore filters
+buildout-starter-*/
+
 # Buildout Ignore Filters
 bin
 build
@@ -16,4 +19,4 @@ dist
 eggs
 parts
 .installed.cfg
-src/buildoutstarter.egg-info
+src/buildout_starter.egg-info
