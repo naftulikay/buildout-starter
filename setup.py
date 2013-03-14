@@ -20,4 +20,5 @@ setup(
             'buildout-start = buildoutstarter:main',
         ],
     },
+    zip_safe = True
 )
