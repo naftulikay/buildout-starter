@@ -10,7 +10,9 @@
 
 # Buildout Ignore Filters
 bin
+build
 develop-eggs
+dist
 eggs
 parts
 .installed.cfg

@@ -8,8 +8,7 @@ setup(
     packages = find_packages('src'),
     package_dir = { '': 'src'},
     install_requires = ['setuptools', {% if is_django %}
-        'django == 1.5',{%- endif %}{% if is_ipython %}
-        'ipython >= 0.13.1',{%- endif %}
+        'django == 1.5',{%- endif %}
     ],
 )"""
 
@@ -20,8 +19,8 @@ eggs = {{ sanitized_project_name }}
 versions = versions
 
 [versions] {% if is_django %}
-django = 1.5.0{%- endif %}
-ipython = 0.13.1
+django = 1.5.0{%- endif %}{% if is_ipython %}
+ipython = 0.13.1{%- endif %}
 
 [python_section]
 recipe = zc.recipe.egg
@@ -59,7 +58,9 @@ GITIGNORE_TEMPLATE = """# Python Ignore Filters
 
 # Buildout Ignore Filters
 bin
+build
 develop-eggs
+dist
 eggs
 parts
 .installed.cfg
