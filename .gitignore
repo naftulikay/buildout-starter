@@ -2,6 +2,12 @@
 *.pyc
 *.pyo
 
+# vim swap files
+.*.sw?
+
+# text-editor backup files
+*~
+
 # Buildout Ignore Filters
 bin
 develop-eggs
