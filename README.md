@@ -2,11 +2,8 @@ buildout-starter
 ================
 
 A project creation utility for starting zc.buildout Python and Django projects. 
-In practical terms, buildout-starter is a Python script for quickly and easily
+In practical terms, `buildout-starter` is a Python script for quickly and easily
 creating Python and Django projects preconfigured with Buildout and setuptools.
-Using command-line parameters, the script can even automatically create Git
-repositories and .gitignore rules, and can optionally install an IPython interpreter
-as a script in addition to optionally adding Eclipse PyDev project files.
 
 ##Installation##
 
@@ -65,7 +62,7 @@ optional arguments:
                         project. Includes .gitignore definitions.
 ```
 
-In plain terms, if you'd like to create a barebones Python buildout project, 
+In plain terms, if you'd like to create a barebones Python Buildout project, 
 install the project first and then call
 
      buildout-start myawesomeproject
@@ -79,7 +76,7 @@ Django projects are easily created by passing the `--django` flag:
 
     buildout-start --ipython --django --git myawesomeproject
 
-buildout-starter automatically sanitizes project names into Python package names
+`buildout-starter` automatically sanitizes project names into Python package names
 where applicable. This is done by removing all non-alphanumeric characters and 
 simply replacing hyphens with underscores. This means a project name like 
 `buildout-starter` would be sanitized to be `buildout_starter`. If this is undesired,
