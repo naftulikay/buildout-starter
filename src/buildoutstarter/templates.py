@@ -3,7 +3,7 @@ SETUP_SCRIPT_TEMPLATE = """#!/usr/bin/env python
 from setuptools import setup, find_packages
 
 setup(
-    name = "{{ sanitized_project_name }}",
+    name = "{{ project_name }}",
     version = "0.0.1-SNAPSHOT",
     packages = find_packages('src'),
     package_dir = { '': 'src'},

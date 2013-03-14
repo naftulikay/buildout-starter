@@ -3,7 +3,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name = "buildoutstarter",
+    name = "buildout-starter",
     description = "A project creation utility for starting zc.buildout Python and Django projects.",
     url = "https://github.com/rfkrocktk/buildout-starter",
     author = "Naftuli Tzvi Kay",
