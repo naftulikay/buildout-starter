@@ -15,4 +15,9 @@ setup(
     install_requires = ['setuptools',
         'jinja2 == 2.6'
     ],
+    entry_points = {
+        'console_scripts': [
+            'buildout-start = buildoutstarter:main',
+        ],
+    },
 )
