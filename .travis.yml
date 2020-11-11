@@ -4,7 +4,7 @@ dist: bionic
 language: python
 
 before_install:
-  - cd "$(pyenv root)/plugins/python-build/../../" && git pull
+  - pyenv update
   - pyenv install -s
   - pip install -r requirements.txt
 install: buildout
