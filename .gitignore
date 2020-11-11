@@ -1,22 +1,11 @@
-# Python Ignore Filters
-*.pyc
-*.pyo
+/bin
+/develop-eggs
+/eggs
+/parts
+/src/*.egg-info/*
 
-# vim swap files
-.*.sw?
-
-# text-editor backup files
-*~
-
-# Built Project Ignore filters
-buildout-starter-*/
-
-# Buildout Ignore Filters
-bin
-build
-develop-eggs
-dist
-eggs
-parts
 .installed.cfg
-src/buildout_starter.egg-info
+
+*.pyo
+*.pyc
+__pycache__

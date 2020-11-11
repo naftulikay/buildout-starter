@@ -1,90 +1,86 @@
-buildout-starter
-================
+# buildout-starter [![Build Status][travis.svg]][travis]
 
-A project creation utility for starting zc.buildout Python and Django projects. 
-In practical terms, `buildout-starter` is a Python script for quickly and easily
-creating Python and Django projects preconfigured with Buildout and setuptools.
+Example project to get you going with Buildout.
 
-##Installation##
+## Requirements
 
-The only prerequisites for installing the project are a Python interpreter and a
-bit of luck. To quickly install the script, simply use `pip`:
+ - `pyenv`: Make sure that `pyenv` is installed and on your `PATH`
 
-    sudo pip install buildout-starter
+## Getting Started
 
-If you don't have or want `pip` for some reason, you can use `easy_install`, too:
+With `pyenv` installed, install the project-specified Python version:
 
-    sudo easy_install buildout-starter
-
-If you're a bit more adventurous, you can clone the project and compile it from 
-source _because you can_:
-
-    # clone the repository
-    git clone git://github.com/rfkrocktk/buildout-starter.git
-    # cd into it
-    cd buildout-starter
-    # bootstrap the buildout
-    python buildout.py
-    # run buildout to set everything up
-    bin/buildout
-    # manually install the project
-    sudo python setup.py install
-
-##Usage##
-
-Script usage attempts to be as easy as possible. Here is the script help page:
-
-```
-usage: buildout-start [-h] [-p PACKAGE_NAME] [--django] [--ipython] [--pydev]
-                      [--git]
-                      name [parent_dir]
-
-Creates a zc.buildout Python project with a given name.
-
-positional arguments:
-  name                  The name of the project to create.
-  parent_dir            The optional parent directory to create the project
-                        in. Defaults to the current directory.
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -p PACKAGE_NAME, --package-name PACKAGE_NAME
-                        The package name to use when creating the project. By
-                        default, the [name] is sanitized and used, but there
-                        are times when this yields undesirable results. Pass a
-                        custom name here to force a specific package name.
-  --django              Create a Django project rather than a simple Python
-                        project.
-  --ipython             Generate an IPython interpreter in addition to the
-                        regular Python interpreter in the bin directory.
-  --pydev               Generate PyDev Eclipse project files.
-  --git                 Generate a Git repository in the newly created
-                        project. Includes .gitignore definitions.
+```shell
+pyenv install
 ```
 
-In plain terms, if you'd like to create a barebones Python Buildout project, 
-install the project first and then call
+This will read the `.python-version` file in the local directory and ensure that the right Python version is installed
+and configured. If the Python version is already installed, there is no need to reinstall it.
 
-     buildout-start myawesomeproject
+Next, install `buildout`:
 
-If you'd like to add in features, you can selectively add options mentioned 
-above to integrate those features in your new project:
+```shell
+pip install -r requirements.txt
+```
 
-    buildout-start --ipython --git myawesomeproject
+> **NOTE:** With a standard Python installation using `pyenv`, it's usually not necessary to use the `--user` flag with
+> `pip install`, if you're doing something more exotic, you might need to.
 
-Django projects are easily created by passing the `--django` flag:
+This will install all dependencies listed in `requirements.txt`. In a Buildout project, usually the only dependency
+listed here will be `zc.buildout` itself, and `buildout` will use its own internal mechanisms for managing dev and
+runtime dependencies and utilities.
 
-    buildout-start --ipython --django --git myawesomeproject
+```shell
+buildout
+```
 
-`buildout-starter` automatically sanitizes project names into Python package names
-where applicable. This is done by removing all non-alphanumeric characters and 
-simply replacing hyphens with underscores. This means a project name like 
-`buildout-starter` would be sanitized to be `buildout_starter`. If this is undesired,
-the package/sanitized project name can be submitted manually:
+Running `buildout` will download dependencies and setup the local project for development. If you add/remove/update
+dependencies, you'll need to run `buildout` again. More generally, if you change `setup.py` or `buildout.cfg`, run
+`buildout` to get everything up to date.
 
-    buildout-start --ipython --git -p buildoutstarter buildout-starter
+Finally, you'll now notice executables in `bin/`:
 
-If you'd like to create the package in a directory other than the current one, 
-you can specify that directory after the project name:
+ - `bin/python`: the Python interpreter for the project.
+ - `bin/ipython`: an IPython interactive environment for the project.
+ - `bin/test`: the Nose test runner, will execute all tests found in any project file named `tests.py`. Suppports both
+   Nose tests and traditional `unittest` tests.
+ - `bin/mypackage-util`: entry-point to the current project's `mypackage.main` function.
 
-    buildout-start --git myawesomeproject ~/Documents/Projects/
+All of these scripts use Buildout's local eggs in a sandbox. This makes things especially nice when interactively
+engaging with your source code using IPython: you can import `mypackage` and any other Python libraries used by the
+project.
+
+## Files
+
+### `.python-version`
+
+Used by `pyenv` to specify the Python version for the current project.
+
+### `buildout.cfg`
+
+An INI-format configuration file for Buildout. To adapt for your use, replace `mypackage` in this file with the name
+of your egg. This name should match the directory name in `src/`.
+
+### `requirements.txt`
+
+`pip` requirements file; only contains `zc.buildout` to get the `buildout` tool installed locally.
+
+### `setup.py`
+
+The traditional `setuptools` definition file for your project. This defines many different things, but primarily
+specifies your project's dependencies and scripts it exposes. To adapt for your use, replace `mypackage` with your egg
+name. This name should match the directory name in `src/`.
+
+### `src/mypackage`
+
+The root directory for your project. Rename this directory if you have changed your project/egg name.
+
+## License
+
+Licensed at your discretion under either:
+
+ - [Apache Software License, Version 2.0](./LICENSE-APACHE)
+ - [MIT License](./LICENSE-MIT)
+
+ [travis]: https://travis-ci.org/naftulikay/buildout-starter
+ [travis.svg]: https://travis-ci.org/naftulikay/buildout-starter.svg?branch=master
